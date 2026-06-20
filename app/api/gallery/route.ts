@@ -8,19 +8,19 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const body = await req.json()
-  createGalleryPhoto(body)
+  await createGalleryPhoto(body)
   return NextResponse.json({ ok: true })
 }
 
 export async function PUT(req: Request) {
   const body = await req.json()
-  updateGalleryPhoto(body.id, body)
+  await updateGalleryPhoto(body.id, body)
   return NextResponse.json({ ok: true })
 }
 
 export async function DELETE(req: Request) {
   const { searchParams } = new URL(req.url)
   const id = Number(searchParams.get('id'))
-  deleteGalleryPhoto(id)
+  await deleteGalleryPhoto(id)
   return NextResponse.json({ ok: true })
 }

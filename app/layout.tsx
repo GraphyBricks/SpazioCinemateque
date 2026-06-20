@@ -29,8 +29,8 @@ export const metadata: Metadata = {
   description: 'Uno spazio indipendente a Nola per guardare film insieme e continuare la conversazione oltre i titoli di coda.',
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  ensureDb()
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  await ensureDb()
   return (
     <html lang="it" className={`${bebasNeue.variable} ${plusJakarta.variable} ${cormorant.variable}`}>
       <body className="bg-cream text-charcoal font-body antialiased">

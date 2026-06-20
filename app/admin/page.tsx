@@ -6,11 +6,13 @@ export const dynamic = 'force-dynamic'
 
 export default async function AdminPage() {
   requireAuth()
-  const movies = getMovies()
-  const screenings = getScreenings()
-  const events = getEvents()
-  const gallery = getGalleryPhotos()
-  const reservations = getReservations()
+  const [movies, screenings, events, gallery, reservations] = await Promise.all([
+    getMovies(),
+    getScreenings(),
+    getEvents(),
+    getGalleryPhotos(),
+    getReservations(),
+  ])
 
   return (
     <section className="min-h-screen pt-32 md:pt-40 pb-24 md:pb-40 px-6 md:px-12 bg-cream">

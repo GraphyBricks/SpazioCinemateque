@@ -4,9 +4,11 @@
 
   ▲ Next.js 14.2.4
   - Local:        http://localhost:3000
+  - Environments: .env.local
 
  ✓ Starting...
- ✓ Ready in 2.2s
- ✓ Compiled /api/movies in 450ms (76 modules)
- GET /api/movies 401 in 575ms
- GET /api/movies 401 in 21ms
+ ✓ Ready in 2.3s
+ ○ Compiling /reserve/[id] ...
+ ✓ Compiled /reserve/[id] in 2.7s (571 modules)
+ GET / 200 in 3255ms
+ GET /reserve/5 200 in 3459ms

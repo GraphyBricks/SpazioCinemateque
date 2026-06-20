@@ -4,8 +4,8 @@ import { getFeaturedScreening } from '@/lib/queries'
 
 export const dynamic = 'force-dynamic'
 
-export default function ReservePage() {
-  const screening = getFeaturedScreening()
+export default async function ReservePage() {
+  const screening = await getFeaturedScreening()
 
   if (screening) redirect('/reserve/' + screening.id)
 

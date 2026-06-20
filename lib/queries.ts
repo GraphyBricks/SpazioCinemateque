@@ -1,7 +1,6 @@
-import db from './db'
+import type { PoolClient } from 'pg'
+import db, { query, withTransaction } from './db'
 import { ensureDb } from './init'
-
-ensureDb()
 
 export type Movie = {
   id: number
@@ -75,46 +74,60 @@ export type GalleryPhoto = {
   created_at: string
 }
 
-export function getMovies(): Movie[] {
-  return db.prepare('SELECT * FROM movies ORDER BY created_at DESC').all() as Movie[]
+async function ready() {
+  await ensureDb()
 }
 
-export function getMovieById(id: number): Movie | undefined {
-  return db.prepare('SELECT * FROM movies WHERE id = ?').get(id) as Movie | undefined
+export async function getMovies(): Promise<Movie[]> {
+  await ready()
+  return query<Movie>('SELECT id, title, description, director, genre, poster_url, maps_url, duration, created_at::text AS created_at FROM movies ORDER BY created_at DESC')
 }
 
-export function createMovie(movie: Omit<Movie, 'id' | 'created_at'>) {
-  return db.prepare(`
-    INSERT INTO movies (title, description, director, genre, poster_url, maps_url, duration)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
-  `).run(movie.title, movie.description, movie.director, movie.genre, movie.poster_url, movie.maps_url || null, movie.duration)
+export async function getMovieById(id: number): Promise<Movie | undefined> {
+  await ready()
+  const rows = await query<Movie>('SELECT id, title, description, director, genre, poster_url, maps_url, duration, created_at::text AS created_at FROM movies WHERE id = $1', [id])
+  return rows[0]
 }
 
-export function updateMovie(id: number, movie: Partial<Movie>) {
+export async function createMovie(movie: Omit<Movie, 'id' | 'created_at'>) {
+  await ready()
+  await db.query(
+    'INSERT INTO movies (title, description, director, genre, poster_url, maps_url, duration) VALUES ($1, $2, $3, $4, $5, $6, $7)',
+    [movie.title, movie.description, movie.director, movie.genre, movie.poster_url, movie.maps_url || null, movie.duration]
+  )
+}
+
+export async function updateMovie(id: number, movie: Partial<Movie>) {
+  await ready()
   const allowed = ['title', 'description', 'director', 'genre', 'poster_url', 'maps_url', 'duration']
-  const fields = Object.keys(movie).filter(k => allowed.includes(k))
+  const fields = Object.keys(movie).filter((key) => allowed.includes(key))
   if (fields.length === 0) return
-  const set = fields.map(f => `${f} = ?`).join(', ')
-  const values = fields.map(f => (movie as any)[f])
-  db.prepare(`UPDATE movies SET ${set} WHERE id = ?`).run(...values, id)
+  const set = fields.map((field, index) => `${field} = $${index + 1}`).join(', ')
+  const values = fields.map((field) => movie[field as keyof Movie] ?? null)
+  await db.query(`UPDATE movies SET ${set} WHERE id = $${fields.length + 1}`, [...values, id])
 }
 
-export function deleteMovie(id: number) {
-  db.prepare('DELETE FROM movies WHERE id = ?').run(id)
+export async function deleteMovie(id: number) {
+  await ready()
+  await db.query('DELETE FROM movies WHERE id = $1', [id])
 }
 
-export function getScreenings(): Screening[] {
-  return db.prepare(`
-    SELECT s.*, m.title as movie_title, m.genre as movie_genre, m.poster_url as movie_poster_url,
-           m.duration as movie_duration, m.description as movie_description, m.director as movie_director
-    FROM screenings s
-    JOIN movies m ON s.movie_id = m.id
-    ORDER BY s.date, s.time
-  `).all() as Screening[]
+const screeningSelect = `
+  SELECT s.id, s.movie_id, s.event_type, s.date, s.time, s.room, s.total_seats,
+         s.created_at::text AS created_at,
+         m.title AS movie_title, m.genre AS movie_genre, m.poster_url AS movie_poster_url,
+         m.duration AS movie_duration, m.description AS movie_description, m.director AS movie_director
+  FROM screenings s
+  JOIN movies m ON s.movie_id = m.id
+`
+
+export async function getScreenings(): Promise<Screening[]> {
+  await ready()
+  return query<Screening>(screeningSelect + ' ORDER BY s.date, s.time')
 }
 
-export function getFeaturedScreening(): Screening | undefined {
-  const screenings = getScreenings()
+export async function getFeaturedScreening(): Promise<Screening | undefined> {
+  const screenings = await getScreenings()
   if (screenings.length === 0) return undefined
 
   const now = new Date()
@@ -130,190 +143,225 @@ export function getFeaturedScreening(): Screening | undefined {
   )) ?? screenings[screenings.length - 1]
 }
 
-export function getScreeningById(id: number): Screening | undefined {
-  return db.prepare(`
-    SELECT s.*, m.title as movie_title, m.genre as movie_genre, m.poster_url as movie_poster_url,
-           m.duration as movie_duration, m.description as movie_description, m.director as movie_director
-    FROM screenings s
-    JOIN movies m ON s.movie_id = m.id
-    WHERE s.id = ?
-  `).get(id) as Screening | undefined
+export async function getScreeningById(id: number): Promise<Screening | undefined> {
+  await ready()
+  const rows = await query<Screening>(screeningSelect + ' WHERE s.id = $1', [id])
+  return rows[0]
 }
 
-export function getMovieMapsUrlForScreening(screeningId: number): string | null {
-  const result = db.prepare(`
-    SELECT m.maps_url
-    FROM screenings s
-    JOIN movies m ON s.movie_id = m.id
-    WHERE s.id = ?
-  `).get(screeningId) as { maps_url: string | null } | undefined
-
-  return result?.maps_url || null
+export async function getMovieMapsUrlForScreening(screeningId: number): Promise<string | null> {
+  await ready()
+  const rows = await query<{ maps_url: string | null }>(
+    'SELECT m.maps_url FROM screenings s JOIN movies m ON s.movie_id = m.id WHERE s.id = $1',
+    [screeningId]
+  )
+  return rows[0]?.maps_url || null
 }
 
-export function getScreeningsByMovie(movieId: number): Screening[] {
-  return db.prepare(`
-    SELECT s.*, m.title as movie_title
-    FROM screenings s
-    JOIN movies m ON s.movie_id = m.id
-    WHERE s.movie_id = ?
-    ORDER BY s.date, s.time
-  `).all(movieId) as Screening[]
+export async function getScreeningsByMovie(movieId: number): Promise<Screening[]> {
+  await ready()
+  return query<Screening>(screeningSelect + ' WHERE s.movie_id = $1 ORDER BY s.date, s.time', [movieId])
 }
 
-export function createScreening(screening: Omit<Screening, 'id' | 'created_at' | 'movie_title' | 'movie_genre' | 'movie_poster_url' | 'movie_duration'>) {
-  const result = db.prepare(`
-    INSERT INTO screenings (movie_id, event_type, date, time, room, total_seats)
-    VALUES (?, ?, ?, ?, ?, ?)
-  `).run(screening.movie_id, screening.event_type, screening.date, screening.time, screening.room, screening.total_seats)
-  generateSeats(Number(result.lastInsertRowid), screening.total_seats)
-  return result
+export async function createScreening(screening: Omit<Screening, 'id' | 'created_at' | 'movie_title' | 'movie_genre' | 'movie_poster_url' | 'movie_duration' | 'movie_description' | 'movie_director'>) {
+  await ready()
+  return withTransaction(async (client) => {
+    const result = await client.query<{ id: number }>(
+      'INSERT INTO screenings (movie_id, event_type, date, time, room, total_seats) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',
+      [screening.movie_id, screening.event_type, screening.date, screening.time, screening.room, screening.total_seats]
+    )
+    const id = result.rows[0].id
+    await generateSeats(id, screening.total_seats, client)
+    return id
+  })
 }
 
-export function updateScreening(id: number, screening: Partial<Screening>) {
+export async function updateScreening(id: number, screening: Partial<Screening>) {
+  await ready()
   const allowed = ['movie_id', 'event_type', 'date', 'time', 'room', 'total_seats']
-  const fields = Object.keys(screening).filter(k => allowed.includes(k))
+  const fields = Object.keys(screening).filter((key) => allowed.includes(key))
   if (fields.length === 0) return
-  const set = fields.map(f => `${f} = ?`).join(', ')
-  const values = fields.map(f => (screening as any)[f])
-  db.prepare(`UPDATE screenings SET ${set} WHERE id = ?`).run(...values, id)
+  const set = fields.map((field, index) => `${field} = $${index + 1}`).join(', ')
+  const values = fields.map((field) => screening[field as keyof Screening] ?? null)
+  await db.query(`UPDATE screenings SET ${set} WHERE id = $${fields.length + 1}`, [...values, id])
+  if (screening.total_seats) await generateSeats(id, screening.total_seats)
 }
 
-export function deleteScreening(id: number) {
-  db.prepare('DELETE FROM screenings WHERE id = ?').run(id)
+export async function deleteScreening(id: number) {
+  await ready()
+  await db.query('DELETE FROM screenings WHERE id = $1', [id])
 }
 
-export function generateSeats(screeningId: number, totalSeats = 90) {
-  const existingSeats = db.prepare('SELECT row, seat_number FROM seats WHERE screening_id = ?').all(screeningId) as Pick<Seat, 'row' | 'seat_number'>[]
-  if (existingSeats.length >= totalSeats) return
-  const existing = new Set(existingSeats.map((seat) => seat.row + '-' + seat.seat_number))
-  const insert = db.prepare('INSERT INTO seats (screening_id, row, seat_number, status, type) VALUES (?, ?, ?, ?, ?)')
-  for (let index = 0; index < totalSeats; index++) {
-    const row = String.fromCharCode(65 + Math.floor(index / 10))
-    const seatNumber = (index % 10) + 1
-    if (!existing.has(row + '-' + seatNumber)) {
-      insert.run(screeningId, row, seatNumber, 'available', 'standard')
-    }
-  }
+export async function generateSeats(screeningId: number, totalSeats = 90, client?: PoolClient) {
+  await ready()
+  const executor = client ?? db
+  await executor.query(`
+    INSERT INTO seats (screening_id, row, seat_number, status, type)
+    SELECT $1, chr(65 + (slot / 10)::integer), (slot % 10) + 1, 'available', 'standard'
+    FROM generate_series(0, $2::integer - 1) AS slot
+    ON CONFLICT (screening_id, row, seat_number) DO NOTHING
+  `, [screeningId, totalSeats])
 }
 
-export function getSeatsByScreening(screeningId: number): Seat[] {
-  return db.prepare('SELECT * FROM seats WHERE screening_id = ? ORDER BY row, seat_number').all(screeningId) as Seat[]
+export async function getSeatsByScreening(screeningId: number): Promise<Seat[]> {
+  await ready()
+  return query<Seat>('SELECT id, screening_id, row, seat_number, status, type FROM seats WHERE screening_id = $1 ORDER BY row, seat_number', [screeningId])
 }
 
-export function updateSeatStatus(seatId: number, status: string) {
-  db.prepare('UPDATE seats SET status = ? WHERE id = ?').run(status, seatId)
+export async function updateSeatStatus(seatId: number, status: string) {
+  await ready()
+  await db.query('UPDATE seats SET status = $1 WHERE id = $2', [status, seatId])
 }
 
-export function getEvents(): Event[] {
-  return db.prepare('SELECT * FROM events ORDER BY date, time').all() as Event[]
+export async function getEvents(): Promise<Event[]> {
+  await ready()
+  return query<Event>('SELECT id, title, description, date, time, image, type, created_at::text AS created_at FROM events ORDER BY date, time')
 }
 
-export function getEventById(id: number): Event | undefined {
-  return db.prepare('SELECT * FROM events WHERE id = ?').get(id) as Event | undefined
+export async function getEventById(id: number): Promise<Event | undefined> {
+  await ready()
+  const rows = await query<Event>('SELECT id, title, description, date, time, image, type, created_at::text AS created_at FROM events WHERE id = $1', [id])
+  return rows[0]
 }
 
-export function createEvent(event: Omit<Event, 'id' | 'created_at'>) {
-  return db.prepare(`
-    INSERT INTO events (title, description, date, time, image, type)
-    VALUES (?, ?, ?, ?, ?, ?)
-  `).run(event.title, event.description, event.date, event.time, event.image, event.type)
+export async function createEvent(event: Omit<Event, 'id' | 'created_at'>) {
+  await ready()
+  await db.query(
+    'INSERT INTO events (title, description, date, time, image, type) VALUES ($1, $2, $3, $4, $5, $6)',
+    [event.title, event.description, event.date, event.time, event.image, event.type]
+  )
 }
 
-export function updateEvent(id: number, event: Partial<Event>) {
-  const fields = Object.keys(event).filter(k => k !== 'id' && k !== 'created_at')
+export async function updateEvent(id: number, event: Partial<Event>) {
+  await ready()
+  const allowed = ['title', 'description', 'date', 'time', 'image', 'type']
+  const fields = Object.keys(event).filter((key) => allowed.includes(key))
   if (fields.length === 0) return
-  const set = fields.map(f => `${f} = ?`).join(', ')
-  const values = fields.map(f => (event as any)[f])
-  db.prepare(`UPDATE events SET ${set} WHERE id = ?`).run(...values, id)
+  const set = fields.map((field, index) => `${field} = $${index + 1}`).join(', ')
+  const values = fields.map((field) => event[field as keyof Event] ?? null)
+  await db.query(`UPDATE events SET ${set} WHERE id = $${fields.length + 1}`, [...values, id])
 }
 
-export function deleteEvent(id: number) {
-  db.prepare('DELETE FROM events WHERE id = ?').run(id)
+export async function deleteEvent(id: number) {
+  await ready()
+  await db.query('DELETE FROM events WHERE id = $1', [id])
 }
 
-export function getGalleryPhotos(): GalleryPhoto[] {
-  return db.prepare('SELECT * FROM gallery_photos ORDER BY created_at DESC').all() as GalleryPhoto[]
+export async function getGalleryPhotos(): Promise<GalleryPhoto[]> {
+  await ready()
+  return query<GalleryPhoto>('SELECT id, image, caption, date, created_at::text AS created_at FROM gallery_photos ORDER BY created_at DESC')
 }
 
-export function createGalleryPhoto(photo: Omit<GalleryPhoto, 'id' | 'created_at'>) {
-  return db.prepare('INSERT INTO gallery_photos (image, caption, date) VALUES (?, ?, ?)').run(photo.image, photo.caption, photo.date)
+export async function createGalleryPhoto(photo: Omit<GalleryPhoto, 'id' | 'created_at'>) {
+  await ready()
+  await db.query('INSERT INTO gallery_photos (image, caption, date) VALUES ($1, $2, $3)', [photo.image, photo.caption, photo.date])
 }
 
-export function updateGalleryPhoto(id: number, photo: Partial<GalleryPhoto>) {
-  const fields = Object.keys(photo).filter(k => k !== 'id' && k !== 'created_at')
+export async function updateGalleryPhoto(id: number, photo: Partial<GalleryPhoto>) {
+  await ready()
+  const allowed = ['image', 'caption', 'date']
+  const fields = Object.keys(photo).filter((key) => allowed.includes(key))
   if (fields.length === 0) return
-  const set = fields.map(f => `${f} = ?`).join(', ')
-  const values = fields.map(f => (photo as any)[f])
-  db.prepare(`UPDATE gallery_photos SET ${set} WHERE id = ?`).run(...values, id)
+  const set = fields.map((field, index) => `${field} = $${index + 1}`).join(', ')
+  const values = fields.map((field) => photo[field as keyof GalleryPhoto] ?? null)
+  await db.query(`UPDATE gallery_photos SET ${set} WHERE id = $${fields.length + 1}`, [...values, id])
 }
 
-export function deleteGalleryPhoto(id: number) {
-  db.prepare('DELETE FROM gallery_photos WHERE id = ?').run(id)
+export async function deleteGalleryPhoto(id: number) {
+  await ready()
+  await db.query('DELETE FROM gallery_photos WHERE id = $1', [id])
 }
 
-export function getReservations(): Reservation[] {
-  return db.prepare(`
-    SELECT r.*, m.title as movie_title, s.date as screening_date, s.time as screening_time,
-           GROUP_CONCAT(st.row || st.seat_number, ', ') as seats
+export async function getReservations(): Promise<Reservation[]> {
+  await ready()
+  return query<Reservation>(`
+    SELECT r.id, r.screening_id, r.customer_name, r.email, r.phone, r.confirmation_code,
+           r.status, r.created_at::text AS created_at, m.title AS movie_title,
+           s.date AS screening_date, s.time AS screening_time,
+           string_agg(st.row || st.seat_number::text, ', ' ORDER BY st.row, st.seat_number) AS seats
     FROM reservations r
     JOIN screenings s ON r.screening_id = s.id
     JOIN movies m ON s.movie_id = m.id
     LEFT JOIN reservation_seats rs ON r.id = rs.reservation_id
     LEFT JOIN seats st ON rs.seat_id = st.id
-    GROUP BY r.id
+    GROUP BY r.id, m.title, s.date, s.time
     ORDER BY r.created_at DESC
-  `).all() as Reservation[]
+  `)
 }
 
-export function getReservationsByScreening(screeningId: number): Reservation[] {
-  return db.prepare(`
-    SELECT r.*, GROUP_CONCAT(st.row || st.seat_number, ', ') as seats
+export async function getReservationsByScreening(screeningId: number): Promise<Reservation[]> {
+  await ready()
+  return query<Reservation>(`
+    SELECT r.id, r.screening_id, r.customer_name, r.email, r.phone, r.confirmation_code,
+           r.status, r.created_at::text AS created_at,
+           string_agg(st.row || st.seat_number::text, ', ' ORDER BY st.row, st.seat_number) AS seats
     FROM reservations r
     LEFT JOIN reservation_seats rs ON r.id = rs.reservation_id
     LEFT JOIN seats st ON rs.seat_id = st.id
-    WHERE r.screening_id = ?
+    WHERE r.screening_id = $1
     GROUP BY r.id
     ORDER BY r.created_at DESC
-  `).all(screeningId) as Reservation[]
+  `, [screeningId])
 }
 
-export function createReservation(reservation: Omit<Reservation, 'id' | 'created_at' | 'seats' | 'movie_title' | 'screening_date' | 'screening_time'>, seatIds: number[]) {
-  if (seatIds.length === 0) throw new Error('No places requested')
+export async function createReservation(
+  reservation: Omit<Reservation, 'id' | 'created_at' | 'seats' | 'movie_title' | 'screening_date' | 'screening_time'>,
+  seatIds: number[]
+) {
+  await ready()
+  const uniqueSeatIds = Array.from(new Set(seatIds))
+  if (uniqueSeatIds.length === 0) throw new Error('No places requested')
 
-  return db.transaction(() => {
-    const placeholders = seatIds.map(() => '?').join(', ')
-    const available = (db.prepare(
-      'SELECT COUNT(*) as count FROM seats WHERE id IN (' + placeholders + ") AND screening_id = ? AND status = 'available'"
-    ).get(...seatIds, reservation.screening_id) as { count: number }).count
+  return withTransaction(async (client) => {
+    const locked = await client.query<{ id: number }>(`
+      SELECT id
+      FROM seats
+      WHERE id = ANY($1::integer[]) AND screening_id = $2 AND status = 'available'
+      FOR UPDATE
+    `, [uniqueSeatIds, reservation.screening_id])
 
-    if (available !== seatIds.length) throw new Error('Places are no longer available')
-
-    const result = db.prepare(
-      'INSERT INTO reservations (screening_id, customer_name, email, phone, confirmation_code, status) VALUES (?, ?, ?, ?, ?, ?)'
-    ).run(reservation.screening_id, reservation.customer_name, reservation.email, reservation.phone, reservation.confirmation_code, reservation.status)
-    const reservationId = Number(result.lastInsertRowid)
-    const insertSeat = db.prepare('INSERT INTO reservation_seats (reservation_id, seat_id) VALUES (?, ?)')
-    const updateSeat = db.prepare("UPDATE seats SET status = 'reserved' WHERE id = ?")
-    for (const seatId of seatIds) {
-      insertSeat.run(reservationId, seatId)
-      updateSeat.run(seatId)
+    if (locked.rowCount !== uniqueSeatIds.length) {
+      throw new Error('Places are no longer available')
     }
-    return result
-  })()
+
+    const created = await client.query<{ id: number }>(`
+      INSERT INTO reservations (screening_id, customer_name, email, phone, confirmation_code, status)
+      VALUES ($1, $2, $3, $4, $5, $6)
+      RETURNING id
+    `, [
+      reservation.screening_id,
+      reservation.customer_name,
+      reservation.email,
+      reservation.phone || null,
+      reservation.confirmation_code,
+      reservation.status,
+    ])
+
+    const reservationId = created.rows[0].id
+    await client.query(
+      'INSERT INTO reservation_seats (reservation_id, seat_id) SELECT $1, unnest($2::integer[])',
+      [reservationId, uniqueSeatIds]
+    )
+    await client.query("UPDATE seats SET status = 'reserved' WHERE id = ANY($1::integer[])", [uniqueSeatIds])
+    return reservationId
+  })
 }
 
-export function updateReservationStatus(id: number, status: string) {
-  db.prepare('UPDATE reservations SET status = ? WHERE id = ?').run(status, id)
+export async function updateReservationStatus(id: number, status: string) {
+  await ready()
+  await db.query('UPDATE reservations SET status = $1 WHERE id = $2', [status, id])
 }
 
-export function deleteReservation(id: number) {
-  const seatIds = (db.prepare('SELECT seat_id FROM reservation_seats WHERE reservation_id = ?').all(id) as { seat_id: number }[]).map(r => r.seat_id)
-  for (const sid of seatIds) {
-    db.prepare("UPDATE seats SET status = 'available' WHERE id = ?").run(sid)
-  }
-  db.prepare('DELETE FROM reservation_seats WHERE reservation_id = ?').run(id)
-  db.prepare('DELETE FROM reservations WHERE id = ?').run(id)
+export async function deleteReservation(id: number) {
+  await ready()
+  await withTransaction(async (client) => {
+    const result = await client.query<{ seat_id: number }>('SELECT seat_id FROM reservation_seats WHERE reservation_id = $1 FOR UPDATE', [id])
+    const seatIds = result.rows.map((row) => row.seat_id)
+    if (seatIds.length > 0) {
+      await client.query("UPDATE seats SET status = 'available' WHERE id = ANY($1::integer[])", [seatIds])
+    }
+    await client.query('DELETE FROM reservations WHERE id = $1', [id])
+  })
 }
 
 export function generateConfirmationCode() {

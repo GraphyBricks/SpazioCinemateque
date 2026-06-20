@@ -1,11 +1,13 @@
 import { initDb } from './db'
-import { seed } from './seed'
 
-let initialized = false
+let initialization: Promise<void> | null = null
 
 export function ensureDb() {
-  if (initialized) return
-  initDb()
-  seed()
-  initialized = true
+  if (!initialization) {
+    initialization = initDb().catch((error) => {
+      initialization = null
+      throw error
+    })
+  }
+  return initialization
 }

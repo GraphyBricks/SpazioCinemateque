@@ -9,8 +9,8 @@ Spazio Cinematheque is a Next.js 14 website and reservation platform for an inde
 Key facts:
 
 - The site is server-rendered with the Next.js App Router.
-- Data is stored in a local SQLite database (`data/spazio.db`) managed by `better-sqlite3`.
-- The database schema is created automatically and seeded with demo data on first run.
+- Data is stored in Neon PostgreSQL and accessed through `pg`.
+- The legacy SQLite file under `data/` is retained only as a migration source/local backup.
 - There is no payment integration; reservations only capture contact details and seat selections.
 - Demo images come from Unsplash URLs and from a small set of local files in `assets/images`.
 - All public-facing text and content are displayed in Italian.
@@ -23,7 +23,7 @@ Key facts:
 | Runtime | Node.js (tested with v22) |
 | Language | TypeScript 5.5.2 (strict mode) |
 | Styling | Tailwind CSS 3.4.4 + custom CSS in `app/globals.css` |
-| Database | SQLite via `better-sqlite3` 11.0.0 |
+| Database | Neon PostgreSQL via `pg` |
 | Icons | `@phosphor-icons/react` 2.1.6 |
 | Fonts | Google Fonts loaded via `next/font/google`: Bebas Neue, Plus Jakarta Sans, Cormorant Garamond |
 
@@ -54,14 +54,14 @@ components/           React components shared across pages
   seat-map.tsx
   section-number.tsx
   section-reveal.tsx
-lib/                  Database layer, queries, seeding, auth helpers
+lib/                  PostgreSQL database layer, queries, auth helpers
   admin-auth.ts
   db.ts
   gallery-assets.ts
   init.ts
   queries.ts
-  seed.ts
-data/                 SQLite database files (gitignored)
+scripts/              One-time SQLite-to-Neon migration
+data/                 Legacy SQLite migration source (gitignored)
 assets/images/        Local gallery and poster images
 public/images/        Static public assets (currently empty)
 ```
@@ -76,6 +76,7 @@ npm run dev       # Start the Next.js dev server on http://localhost:3000
 npm run build     # Production build
 npm start         # Start the production server
 npm run lint      # Run Next.js ESLint
+npm run db:migrate # One-time copy from local SQLite to an empty Neon database
 ```
 
 There are no test scripts, test files, or testing framework configured.
@@ -84,10 +85,10 @@ There are no test scripts, test files, or testing framework configured.
 
 ### Database Initialization
 
-- `lib/db.ts` opens `data/spazio.db` and enables WAL mode (`journal_mode = WAL`).
-- `lib/init.ts` exports `ensureDb()`, which calls `initDb()` (schema creation) and `seed()` (demo data) only once per process.
-- `ensureDb()` is invoked in the root layout (`app/layout.tsx`), so the database is initialized automatically when the app starts.
-- `lib/queries.ts` also calls `ensureDb()` at the top of the module as a safety net.
+- `lib/db.ts` creates a pooled PostgreSQL connection from `DATABASE_URL`.
+- `lib/init.ts` verifies connectivity once per process.
+- `ensureDb()` is awaited in the root layout and by query functions.
+- Schema/data initialization is explicit through `npm run db:migrate` rather than runtime seeding.
 
 ### Schema
 
@@ -101,7 +102,7 @@ The database contains these tables:
 - `events` — special programming (panels, Q&As, showcases).
 - `gallery_photos` — gallery images stored as URLs/captions.
 
-Seat generation is hard-coded: rows A–H, 10 seats per row (6 in row H), with rows A and B marked premium and the outer seats of row H marked wheelchair.
+Seat capacity defaults to 90 internal availability records. Public reservations select a guest count rather than assigned seats.
 
 ### Rendering Strategy
 
@@ -164,17 +165,16 @@ All API routes return JSON and perform no input validation beyond simple type co
 - Admin authentication is password-only and the default password is hard-coded. In production, set `ADMIN_PASSWORD` to a strong value.
 - The session cookie value is a static string (`authenticated`), not a signed token.
 - API routes do not validate inputs, sanitize strings, or implement rate limiting.
-- The SQLite database file is created in the project root under `data/`. Ensure the directory is writable and persisted across deploys.
+- `DATABASE_URL` must be configured in every deployment environment and should use the Neon pooled connection string.
 - No HTTPS or security headers are configured beyond Next.js defaults.
 - The contact form is client-side only and does not send data anywhere.
 - No payment processing is implemented.
-- `better-sqlite3` is listed in `serverComponentsExternalPackages` in `next.config.js` so it is not bundled into the client.
+- The private movie Google Maps URL is looked up server-side only after a successful reservation.
 
 ## Deployment Notes
 
 - The project is a standard Next.js application. Build with `npm run build` and start with `npm start`.
-- The `data/` directory must be writable at runtime and must persist between restarts, or the database will re-seed on every launch.
-- Environment variable: `ADMIN_PASSWORD` overrides the default admin password.
+- Environment variables: `DATABASE_URL` is required; `DATABASE_URL_UNPOOLED` is used by migrations; `ADMIN_PASSWORD` overrides the default admin password.
 - The `out/` directory is ignored; this project is not currently configured for static export.
 
 ## Development Checklist for Agents
@@ -184,7 +184,7 @@ When modifying this project:
 1. Keep the existing editorial visual style (warm cream/charcoal palette, custom fonts, generous whitespace).
 2. Reuse Tailwind component classes from `globals.css` rather than inventing new inline styles.
 3. Use `SectionReveal` for new page sections so scroll behavior stays consistent.
-4. Add database changes in `lib/db.ts` schema creation and update `lib/queries.ts` types and functions.
+4. Add database changes through an explicit PostgreSQL migration and update `lib/queries.ts` types and async functions.
 5. Keep server/client boundaries clear: put data fetching in Server Components, put interactivity in Client Components.
 6. If you add new remote image hostnames, update `images.remotePatterns` in `next.config.js`.
 7. Do not commit `data/*.db*` files; they are gitignored.

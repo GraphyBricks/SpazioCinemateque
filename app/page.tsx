@@ -23,7 +23,7 @@ function formatDate(date: string) {
 }
 
 export default async function HomePage() {
-  const screening = getFeaturedScreening()
+  const screening = await getFeaturedScreening()
   const gallery = (await getAssetGalleryPhotos()).slice(0, 9)
 
   return (

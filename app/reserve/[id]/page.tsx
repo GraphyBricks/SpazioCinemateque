@@ -5,9 +5,9 @@ import ReservationFlow from '@/components/reservation-flow'
 export const dynamic = 'force-dynamic'
 
 export default async function ReserveDetailPage({ params }: { params: { id: string } }) {
-  const screening = getScreeningById(Number(params.id))
+  const screening = await getScreeningById(Number(params.id))
   if (!screening) return notFound()
-  const seats = getSeatsByScreening(screening.id)
+  const seats = await getSeatsByScreening(screening.id)
 
   return (
     <section className="min-h-screen pt-24 md:pt-28 pb-20 md:pb-32 px-6 md:px-10 bg-cream">

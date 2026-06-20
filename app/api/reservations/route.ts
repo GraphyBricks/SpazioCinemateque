@@ -2,14 +2,14 @@ import { NextResponse } from 'next/server'
 import { getReservations, createReservation, deleteReservation, generateConfirmationCode, getMovieMapsUrlForScreening } from '@/lib/queries'
 
 export async function GET() {
-  return NextResponse.json(getReservations())
+  return NextResponse.json(await getReservations())
 }
 
 export async function POST(req: Request) {
   try {
     const body = await req.json()
     const code = generateConfirmationCode()
-    createReservation(
+    await createReservation(
       {
         screening_id: body.screening_id,
         customer_name: body.customer_name,
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
     return NextResponse.json({
       ok: true,
       confirmation_code: code,
-      maps_url: getMovieMapsUrlForScreening(body.screening_id),
+      maps_url: await getMovieMapsUrlForScreening(body.screening_id),
     })
   } catch {
     return NextResponse.json(
@@ -36,6 +36,6 @@ export async function POST(req: Request) {
 export async function DELETE(req: Request) {
   const { searchParams } = new URL(req.url)
   const id = Number(searchParams.get('id'))
-  deleteReservation(id)
+  await deleteReservation(id)
   return NextResponse.json({ ok: true })
 }

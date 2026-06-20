@@ -11,8 +11,8 @@ const dateFormat = new Intl.DateTimeFormat('it-IT', {
   month: 'long',
 })
 
-export default function SchedulePage() {
-  const screening = getFeaturedScreening()
+export default async function SchedulePage() {
+  const screening = await getFeaturedScreening()
 
   return (
     <section className="min-h-screen bg-cream px-6 pb-20 pt-28 md:px-10 md:pb-32 md:pt-36">

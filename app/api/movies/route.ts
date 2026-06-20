@@ -8,20 +8,20 @@ function unauthorized() {
 
 export async function GET() {
   if (!isAuthenticated()) return unauthorized()
-  return NextResponse.json(getMovies())
+  return NextResponse.json(await getMovies())
 }
 
 export async function POST(req: Request) {
   if (!isAuthenticated()) return unauthorized()
   const body = await req.json()
-  createMovie(body)
+  await createMovie(body)
   return NextResponse.json({ ok: true })
 }
 
 export async function PUT(req: Request) {
   if (!isAuthenticated()) return unauthorized()
   const body = await req.json()
-  updateMovie(body.id, body)
+  await updateMovie(body.id, body)
   return NextResponse.json({ ok: true })
 }
 
@@ -29,6 +29,6 @@ export async function DELETE(req: Request) {
   if (!isAuthenticated()) return unauthorized()
   const { searchParams } = new URL(req.url)
   const id = Number(searchParams.get('id'))
-  deleteMovie(id)
+  await deleteMovie(id)
   return NextResponse.json({ ok: true })
 }
