@@ -1,0 +1,308 @@
+ ⨯ upstream image response failed for https://images.unsplash.com/photo-1594909122849-11e29194f11c?w=800&auto=format&fit=crop 404
+ ⨯ upstream image response failed for https://images.unsplash.com/photo-1517604931442-710e8ed05b54?w=800&auto=format&fit=crop 404
+ ⨯ upstream image response failed for https://images.unsplash.com/photo-1517604931442-710e8ed05b54?w=800&auto=format&fit=crop 404
+ ⨯ upstream image response failed for https://images.unsplash.com/photo-1594909122849-11e29194f11c?w=800&auto=format&fit=crop 404
+ ⨯ upstream image response failed for https://images.unsplash.com/photo-1517604931442-710e8ed05b54?w=800&auto=format&fit=crop 404
+ ⨯ upstream image response failed for https://images.unsplash.com/photo-1517604931442-710e8ed05b54?w=800&auto=format&fit=crop 404
+ ⨯ upstream image response failed for https://images.unsplash.com/photo-1594909122849-11e29194f11c?w=800&auto=format&fit=crop 404
+ ⨯ The requested resource isn't a valid image for /api/gallery-assets/spazio_cinematheque_1766846166_3796903298020735424_65169431444.jpg received text/html; charset=utf-8
+ ⨯ Error: Cannot find module './682.js'
+Require stack:
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\webpack-runtime.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\pages\_document.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\lib\start-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\cli\next-start.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1383:15)
+    at C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)
+    at Function._load (node:internal/modules/cjs/loader:1192:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1463:12)
+    at mod.require (C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:147:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\pages\\_document.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\cli\\next-start.js'
+  ]
+}
+ ⨯ Error: Cannot find module './682.js'
+Require stack:
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\webpack-runtime.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\pages\_document.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\lib\start-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\cli\next-start.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1383:15)
+    at C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)
+    at Function._load (node:internal/modules/cjs/loader:1192:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1463:12)
+    at mod.require (C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:147:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\pages\\_document.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\cli\\next-start.js'
+  ]
+}
+ ⨯ Error: Cannot find module './682.js'
+Require stack:
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\webpack-runtime.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\pages\_document.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\lib\start-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\cli\next-start.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1383:15)
+    at C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)
+    at Function._load (node:internal/modules/cjs/loader:1192:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1463:12)
+    at mod.require (C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:147:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\pages\\_document.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\cli\\next-start.js'
+  ]
+}
+ ⨯ Error: Cannot find module './682.js'
+Require stack:
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\webpack-runtime.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\pages\_document.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\lib\start-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\cli\next-start.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1383:15)
+    at C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)
+    at Function._load (node:internal/modules/cjs/loader:1192:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1463:12)
+    at mod.require (C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:147:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\pages\\_document.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\cli\\next-start.js'
+  ]
+}
+ ⨯ Error: Cannot find module './682.js'
+Require stack:
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\webpack-runtime.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\pages\_document.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\lib\start-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\cli\next-start.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1383:15)
+    at C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)
+    at Function._load (node:internal/modules/cjs/loader:1192:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1463:12)
+    at mod.require (C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:147:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\pages\\_document.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\cli\\next-start.js'
+  ]
+}
+ ⨯ Error: Cannot find module './682.js'
+Require stack:
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\webpack-runtime.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\pages\_document.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\lib\start-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\cli\next-start.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1383:15)
+    at C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)
+    at Function._load (node:internal/modules/cjs/loader:1192:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1463:12)
+    at mod.require (C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:147:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\pages\\_document.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\cli\\next-start.js'
+  ]
+}
+ ⨯ Error: Cannot find module './682.js'
+Require stack:
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\webpack-runtime.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\pages\_document.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\lib\start-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\cli\next-start.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1383:15)
+    at C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)
+    at Function._load (node:internal/modules/cjs/loader:1192:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1463:12)
+    at mod.require (C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:147:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\pages\\_document.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\cli\\next-start.js'
+  ]
+}
+ ⨯ Error: Cannot find module './682.js'
+Require stack:
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\webpack-runtime.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\pages\_document.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\lib\start-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\cli\next-start.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1383:15)
+    at C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)
+    at Function._load (node:internal/modules/cjs/loader:1192:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1463:12)
+    at mod.require (C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:147:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\pages\\_document.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\cli\\next-start.js'
+  ]
+}
+ ⨯ Error: Cannot find module './682.js'
+Require stack:
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\webpack-runtime.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\pages\_document.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\lib\start-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\cli\next-start.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1383:15)
+    at C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)
+    at Function._load (node:internal/modules/cjs/loader:1192:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1463:12)
+    at mod.require (C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:147:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\pages\\_document.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\cli\\next-start.js'
+  ]
+}
+ ⨯ Error: Cannot find module './682.js'
+Require stack:
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\webpack-runtime.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\.next\server\pages\_document.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\next.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\lib\start-server.js
+- C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\cli\next-start.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1383:15)
+    at C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1025:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1030:22)
+    at Function._load (node:internal/modules/cjs/loader:1192:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:237:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1463:12)
+    at mod.require (C:\Users\lucia\Documents\GraphyBricks\SpazioCinemateque\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:147:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\.next\\server\\pages\\_document.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\next.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'C:\\Users\\lucia\\Documents\\GraphyBricks\\SpazioCinemateque\\node_modules\\next\\dist\\cli\\next-start.js'
+  ]
+}

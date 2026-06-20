@@ -1,0 +1,231 @@
+
+> spazio-cinematheque@0.1.0 dev
+> next dev --hostname 127.0.0.1 --port 3001
+
+  ▲ Next.js 14.2.4
+  - Local:        http://127.0.0.1:3001
+  - Network:      http://127.0.0.1:3001
+
+ ✓ Starting...
+ ✓ Ready in 2.9s
+ ○ Compiling / ...
+ ✓ Compiled / in 4s (587 modules)
+ ✓ Compiled in 450ms (279 modules)
+ GET / 200 in 4464ms
+ ✓ Compiled in 438ms (279 modules)
+ ✓ Compiled / in 136ms (281 modules)
+ GET / 200 in 317ms
+ GET / 200 in 30ms
+ GET / 200 in 37ms
+ GET / 200 in 35ms
+ GET / 200 in 32ms
+ ✓ Compiled in 452ms (279 modules)
+ ✓ Compiled in 576ms (557 modules)
+ ✓ Compiled in 363ms (557 modules)
+ GET / 200 in 184ms
+ GET / 200 in 35ms
+ ✓ Compiled /_not-found in 259ms (546 modules)
+ GET /_next/static/css/app/layout.css?v=1781601028477 404 in 446ms
+ GET /_next/static/chunks/webpack.js?v=1781601028477 404 in 452ms
+ GET /_next/static/chunks/main-app.js?v=1781601028477 404 in 451ms
+ GET /_next/static/chunks/app/page.js 404 in 450ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 452ms
+ GET /_next/static/chunks/app/layout.js 404 in 449ms
+ GET /_next/static/webpack/2241687058a518ce.webpack.hot-update.json 404 in 355ms
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 1449ms (769 modules)
+ GET / 500 in 1756ms
+ GET /_next/static/webpack/2241687058a518ce.webpack.hot-update.json 404 in 621ms
+ GET / 500 in 20ms
+ GET /_next/static/chunks/react-refresh.js 404 in 37ms
+ GET /_next/static/chunks/webpack.js 404 in 39ms
+ GET /_next/static/chunks/main.js 404 in 37ms
+ GET /_next/static/chunks/pages/_error.js 404 in 25ms
+ GET /_next/static/development/_buildManifest.js 404 in 27ms
+ GET /_next/static/chunks/pages/_app.js 404 in 31ms
+ GET / 500 in 19ms
+ GET /_next/static/chunks/webpack.js 404 in 35ms
+ GET /_next/static/chunks/main.js 404 in 34ms
+ GET /_next/static/chunks/react-refresh.js 404 in 36ms
+ GET /_next/static/chunks/pages/_app.js 404 in 41ms
+ GET /_next/static/development/_ssgManifest.js 404 in 39ms
+ GET /_next/static/development/_buildManifest.js 404 in 40ms
+ GET /_next/static/chunks/pages/_error.js 404 in 37ms
+ GET / 500 in 15ms
+ GET /_next/static/chunks/main.js 404 in 58ms
+ GET /_next/static/chunks/webpack.js 404 in 62ms
+ GET /_next/static/chunks/react-refresh.js 404 in 60ms
+ GET /_next/static/chunks/pages/_app.js 404 in 45ms
+ GET /_next/static/development/_buildManifest.js 404 in 45ms
+ GET /_next/static/chunks/pages/_error.js 404 in 37ms
+ GET /_next/static/development/_ssgManifest.js 404 in 17ms
+ ✓ Compiled in 756ms (780 modules)
+ ✓ Compiled in 231ms (465 modules)
+ GET / 500 in 1462ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 930ms (772 modules)
+ GET /_next/static/webpack/44b13d4d76ef3d01.webpack.hot-update.json 500 in 605ms
+ GET / 200 in 170ms
+ GET /_next/static/chunks/main-app.js?v=1781601977825 500 in 19ms
+ GET /_next/static/chunks/app-pages-internals.js 500 in 18ms
+ ✓ Compiled in 640ms (786 modules)
+ ✓ Compiled in 659ms (772 modules)
+ ✓ Compiled in 270ms (467 modules)
+ ✓ Compiled in 107ms (318 modules)
+ ✓ Compiled in 293ms (465 modules)
+ ✓ Compiled in 252ms (465 modules)
+ GET / 200 in 162ms
+ ✓ Compiled /_not-found in 155ms (772 modules)
+ GET /_next/static/chunks/main-app.js?v=1781602089369 500 in 187ms
+ GET /_next/static/chunks/app-pages-internals.js 500 in 183ms
+ ✓ Compiled /api/gallery-assets/[name] in 324ms (349 modules)
+ GET /api/gallery-assets/spazio_cinematheque_1773254434_3850656700084838915_65169431444.jpg 404 in 12ms
+ GET /api/gallery-assets/spazio_cinematheque_3796804944636998426.jpg 404 in 14ms
+ GET /api/gallery-assets/spazio_cinematheque_1777478411_3886092924534431521_65169431444.jpg 404 in 14ms
+ GET /api/gallery-assets/spazio_cinematheque_1766846166_3796903298322677605_65169431444.jpg 404 in 14ms
+ GET /api/gallery-assets/spazio_cinematheque_1766846166_3796903298020735424_65169431444.jpg 404 in 14ms
+ GET /api/gallery-assets/spazio_cinematheque_1779725106_3904936059726960841_65169431444.jpg 500 in 973ms
+ GET /api/gallery-assets/spazio_cinematheque_1779725106_3904936092400379714_65169431444.jpg 500 in 972ms
+ GET /api/gallery-assets/spazio_cinematheque_1764517608_3777369942274889598_65169431444.jpg 500 in 973ms
+ GET /api/gallery-assets/spazio_cinematheque_1779725106_3904935854080102156_65169431444.jpg 500 in 991ms
+ ✓ Compiled /gallery in 350ms (820 modules)
+ GET /gallery 200 in 503ms
+ GET /_next/static/css/app/layout.css?v=1781602095055 500 in 25ms
+ GET /_next/static/chunks/main-app.js?v=1781602095055 500 in 23ms
+ GET /_next/static/chunks/app-pages-internals.js 500 in 23ms
+ GET /api/gallery-assets/spazio_cinematheque_1779725106_3904935854080102156_65169431444.jpg 500 in 72ms
+ GET /api/gallery-assets/spazio_cinematheque_1779725106_3904936059726960841_65169431444.jpg 500 in 75ms
+ GET /api/gallery-assets/spazio_cinematheque_1779725106_3904936092400379714_65169431444.jpg 500 in 78ms
+ GET /api/gallery-assets/spazio_cinematheque_1764517608_3777369942274889598_65169431444.jpg 500 in 82ms
+ GET /api/gallery-assets/spazio_cinematheque_1773254434_3850656700084838915_65169431444.jpg 500 in 83ms
+ GET /api/gallery-assets/spazio_cinematheque_3796804944636998426.jpg 500 in 86ms
+ GET /api/gallery-assets/spazio_cinematheque_1777478411_3886092924534431521_65169431444.jpg 500 in 39ms
+ GET /api/gallery-assets/spazio_cinematheque_1766846166_3796903298020735424_65169431444.jpg 500 in 41ms
+ GET /api/gallery-assets/spazio_cinematheque_1766846166_3796903298322677605_65169431444.jpg 500 in 43ms
+ GET / 500 in 33ms
+ GET /_next/static/chunks/fallback/webpack.js 500 in 52ms
+ GET /_next/static/chunks/fallback/react-refresh.js 500 in 44ms
+ GET /_next/static/chunks/fallback/main.js 500 in 42ms
+ GET /_next/static/chunks/fallback/pages/_app.js 500 in 40ms
+ GET /_next/static/chunks/fallback/pages/_error.js 500 in 40ms
+ GET / 404 in 15ms
+ GET / 404 in 14ms
+ GET / 404 in 13ms
+ GET / 404 in 11ms
+ GET / 404 in 12ms
+ GET / 404 in 12ms
+ GET / 404 in 12ms
+ GET / 404 in 12ms
+ GET / 404 in 11ms
+ GET / 404 in 32ms
+ GET / 404 in 12ms
+ GET / 404 in 11ms
+ GET / 404 in 12ms
+ GET / 404 in 11ms
+ GET / 404 in 18ms
+ GET / 404 in 12ms
+ GET / 404 in 13ms
+ GET / 404 in 13ms
+ GET / 500 in 38ms
+ GET / 500 in 30ms
+ GET / 500 in 43ms
+ GET / 500 in 34ms
+ GET / 500 in 31ms
+ GET / 500 in 31ms
+ GET / 500 in 30ms
+ GET / 500 in 26ms
+ GET / 500 in 28ms
+ GET / 500 in 64ms
+ GET / 500 in 28ms
+ GET / 500 in 68ms
+ GET / 500 in 34ms
+ GET / 500 in 32ms
+ GET / 500 in 28ms
+ GET / 500 in 25ms
+ GET / 500 in 35ms
+ GET / 500 in 27ms
+ GET / 500 in 30ms
+ GET / 500 in 29ms
+ GET / 500 in 27ms
+ GET / 500 in 32ms
+ GET / 500 in 27ms
+ GET / 500 in 29ms
+ GET / 500 in 24ms
+ GET / 500 in 28ms
+ GET / 500 in 32ms
+ GET / 500 in 28ms
+ GET / 500 in 29ms
+ GET / 500 in 26ms
+ GET / 500 in 26ms
+ GET / 500 in 29ms
+ GET / 500 in 30ms
+ GET / 500 in 26ms
+ GET / 500 in 29ms
+ GET / 500 in 29ms
+ GET / 500 in 30ms
+ GET / 500 in 31ms
+ GET / 500 in 32ms
+ GET / 500 in 29ms
+ GET / 500 in 32ms
+ GET / 500 in 27ms
+ GET / 500 in 29ms
+ GET / 500 in 29ms
+ GET / 500 in 32ms
+ GET / 500 in 25ms
+ GET / 500 in 34ms
+ GET / 500 in 28ms
+ GET / 500 in 33ms
+ GET / 500 in 28ms
+ GET / 500 in 29ms
+ GET / 500 in 29ms
+ GET / 500 in 26ms
+ GET / 500 in 27ms
+ GET / 500 in 26ms
+ GET / 500 in 28ms
+ GET / 500 in 25ms
+ GET / 500 in 27ms
+ GET / 500 in 29ms
+ GET / 500 in 27ms
+ ✓ Compiled in 2.3s (772 modules)
+ GET / 500 in 1477ms
+ GET / 200 in 159ms
+ GET / 200 in 49ms
+ ✓ Compiled in 1602ms (466 modules)
+ GET / 500 in 12ms
+ GET /_next/static/chunks/fallback/webpack.js 500 in 134ms
+ GET /_next/static/chunks/fallback/main.js 500 in 133ms
+ GET /_next/static/chunks/fallback/react-refresh.js 500 in 133ms
+ GET /_next/static/chunks/fallback/pages/_app.js 500 in 109ms
+ GET /_next/static/chunks/fallback/pages/_error.js 500 in 109ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 485ms (773 modules)
+ ✓ Compiled in 447ms (787 modules)
+ ✓ Compiled in 303ms (466 modules)
+ ✓ Compiled in 1002ms (784 modules)
+ GET / 200 in 141ms
+ ○ Compiling /schedule ...
+ ✓ Compiled /schedule in 1212ms (799 modules)
+ ✓ Compiled /reserve in 186ms (801 modules)
+ ✓ Compiled /admin in 376ms (807 modules)
+ GET /admin 307 in 109ms
+ ✓ Compiled /admin/login in 256ms (800 modules)
+ GET /admin/login 200 in 406ms
+ ✓ Compiled /_not-found in 210ms (803 modules)
+ GET /_next/static/css/app/layout.css?v=1781603061279 404 in 335ms
+ GET /_next/static/chunks/main-app.js?v=1781603061279 404 in 328ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 324ms
+ GET /_next/static/chunks/app/layout.js 404 in 323ms
+ GET / 200 in 84ms
+ ✓ Compiled /gallery in 81ms (344 modules)
+ GET /_next/static/chunks/app/gallery/page.js 404 in 28ms
+ GET /gallery 200 in 47ms
+ GET /_next/static/chunks/app/gallery/page.js 404 in 30ms
+ GET /gallery 200 in 52ms
+ GET /_next/static/chunks/app/gallery/page.js 404 in 26ms
+ GET /gallery 200 in 41ms
+ GET /_next/static/chunks/app/gallery/page.js 404 in 39ms
+ GET / 200 in 72ms
+ GET /_next/static/chunks/app/gallery/page.js 404 in 18ms
+ ✓ Compiled in 870ms (784 modules)
+ GET /_next/static/webpack/bf8132e8c0a89005.webpack.hot-update.json 404 in 331ms
+ GET /gallery 200 in 570ms

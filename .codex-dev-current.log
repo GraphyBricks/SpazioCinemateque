@@ -1,0 +1,12 @@
+
+> spazio-cinematheque@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.4
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 2.2s
+ ✓ Compiled /api/movies in 450ms (76 modules)
+ GET /api/movies 401 in 575ms
+ GET /api/movies 401 in 21ms
